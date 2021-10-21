@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace SqlData
 {
-    public class SqlDataAccess
+    public class SqlData
     {
-        public class SqlDataAccess : ISqlDataAccess
+        public class SqlDataAccess
         {
             private readonly IConfiguration _config;
 
@@ -33,7 +38,7 @@ namespace ClassLibrary1
 
                 using (IDbConnection connection = new SqlConnection(connectionString))
                 {
-                    await connection.ExecuteAsync(sql, parameters);
+                    object p = await connection.ExecuteAsync(sql, parameters);
                 }
             }
         }
